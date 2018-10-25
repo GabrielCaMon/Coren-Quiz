@@ -1,0 +1,43 @@
+
+
+img{
+    margin-left: 23%;
+    margin-bottom:30px; 
+}
+.container{
+    margin-top:5%;
+    height: 500px;
+    
+}
+
+div p, div h1{
+    text-align: center;
+}
+div button{
+    margin-left: 33%;
+    width: 200px;
+    padding: 25px 0px !important;
+   
+}
+
+
+
+.verdadeiro{
+    border-color: darkgreen;
+    margin-top:40px;
+}
+
+.falso{
+    border-color: crimson;
+    margin-top:20px;
+}
+
+
+.reset{
+    border-color: yellow;
+    
+    margin-top:40px;
+}
+.info{    
+    margin-top:40px;
+}

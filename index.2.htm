@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="node_modules/bootstrap/compiler/bootstrap.css">
+  <link rel="stylesheet" href="css/main.css">
+
+
+
+
+
+  <title>Quiz COREN</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div id="col0" class="col-lg-6 align-self-center">
+
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div id="col1" class="col-lg-6 align-self-center">
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div id="col2" class="col-lg-6 align-self-center">
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/popper.js/dist/popper.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+</body>
+<script>
+
+  $(document).ready(function () {
+
+    var pergunta = []
+    var paragrafo = []
+    var veracidade = []
+    var randomCount = 0;
+    var x = 0
+    var valor = 0
+
+    var start = function () {
+      pergunta = ["<h1>1ª Pergunta</h1>", "<h1>2ª Pergunta</h1>", "<h1>3ª Pergunta</h1>", "<h1>4ª Pergunta</h1>", "<h1>5ª Pergunta</h1>","<h1>6ª Pergunta</h1>"]
+      paragrafo = ["<p>1+1=2?</p>", 
+      "<p>1+1 =3?</p>", 
+      "<p>1+1 =4?</p>", 
+      "<p>2+2 =4?</p>", 
+      "<p>3+3 =6?</p>", 
+      "<p>3+3 =5?</p>"]
+      veracidade = [1, 0, 0, 1, 1, 0]
+      randomCount = 6;
+      x = 0
+      valor = 0
+      $("#col1 button").remove()
+      $(".container").css({
+        "background": "url(./imgs/QuizCoren.png)",
+        "background-size": "1200px 1121px"
+      });
+
+      $("#start").css({
+        "margin-top": "75%",
+        "margn-left":"75%"
+      })
+      $("#col0").html("<h1>Quiz Coren</h1>")
+      $("#col1").append("<button>START</button>")
+      $("#col1 button").attr("href", "#");
+      $("#col1 button").attr("id", "start");
+      $("#col1 button").attr("class", "reset btn btn-primary bg-warning");
+
+      $("#start").click(function () {
+        x = 0
+        valor = 0
+        game()
+      })
+    }
+
+    var game = function () {
+      var random = Math.floor(Math.random() * randomCount)
+        
+      $("#col0").html(pergunta[x])
+      $("#col0").append(paragrafo[random])
+      $("#col1").html("<button>Verdadeiro</button>")
+      $("#col1 button").attr("href", "#");
+      $("#col1 button").attr("id", "verdadeiro");
+      $("#col1 button").attr("class", "verdadeiro btn btn-primary bg-success");
+      $("#col2").html("<button>Falso</button>")
+      $("#col2 button").attr("href", "#");
+      $("#col2 button").attr("id", "falso");
+      $("#col2 button").attr("class", "falso btn btn-primary bg-danger");
+      $("#verdadeiro").val(veracidade[random])
+      $("#falso").val(veracidade[random])
+
+      $("#verdadeiro").click(function () {
+        paragrafo.splice(random, 1)
+        randomCount = randomCount - 1
+
+        if ($("#verdadeiro").val() == 1) {
+          valor = valor + 1
+          x = x + 1
+          alert("acertou")
+          veracidade.splice(random, 1)
+          if (x <= 2) {
+            game()
+          } else {
+            final()
+          }
+        } else {
+          x = x + 1
+          alert("errou")
+          veracidade.splice(random, 1)
+          if (x <= 2) {
+            game()
+          } else {
+            final()
+          }
+        }
+      })
+
+
+      $("#falso").click(function () {
+        paragrafo.splice(random, 1)
+        randomCount = randomCount - 1
+
+        if ($("#falso").val() == 0) {
+          valor = valor + 1
+          x = x + 1
+
+          alert("acertou")
+          veracidade.splice(random, 1)
+          if (x <= 2) {
+            game()
+          } else {
+            final()
+          }
+        } else {
+          x = x + 1
+          alert("errou")
+          veracidade.splice(random, 1)
+          if (x <= 2) {
+            game()
+          } else {
+            final()
+          }
+        }
+      })
+    }
+
+    var final = function () {
+      $("#col0").html("<h1>Nota</h1>")
+      $("#col0").append("<p>" + valor + "</p>")
+      $("#col1 button").remove()
+      $("#col2 button").remove()
+      $("#col1").append("<button>RESET</button>")
+      $("#col1 button").attr("href", "#");
+      $("#col1 button").attr("id", "reset");
+      $("#col1 button").attr("class", "reset btn btn-primary bg-warning");
+
+      $("#reset").click(function () {
+        x = 0
+        valor = 0
+        start()
+      })
+    }
+    start()
+
+
+
+
+
+  });
+
+
+
+</script>
+
+</html>

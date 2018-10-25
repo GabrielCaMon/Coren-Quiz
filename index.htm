@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="node_modules/bootstrap/compiler/bootstrap.css">
+  <link rel="stylesheet" href="css/main.css">
+
+
+
+
+
+  <title>Quiz COREN</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div id="pergunta" class="col-lg-6 align-self-center">
+
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div id="divverdadeiro" class="col-lg-6 align-self-center">
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div id="divfalso" class="col-lg-6 align-self-center">
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/popper.js/dist/popper.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+</body>
+<script>
+
+  $(document).ready(function () {
+//"<p></p>"
+    
+    var pergunta = ["<h1>1ª Pergunta</h1>", "<h1>2ª Pergunta</h1>", "<h1>3ª Pergunta</h1>"]
+    var paragrafo = ["<p>1.	HVD é a sigla para hipertrofia ventricular direita</p>", 
+    "<p>2.	DM é a sigla para diabetes mellitus</p>",
+    "<p>3.	P é a sigla para pulso</p>",
+    "<p>4.	FR é a sigla para frequência respiratória </p>",
+    "<p></p>"]
+    var veracidade = [1, 1,1]
+    
+    var randomCount = 3;
+   
+    var x = 0
+    var valor = 0
+
+    var game = function () {
+      var random = Math.floor(Math.random() * randomCount)
+   
+      $("#pergunta").html(pergunta[x])
+      $("#pergunta").append(paragrafo[random])
+      $("#divverdadeiro").html("<button>Verdadeiro</button>")
+      $("#divverdadeiro button").attr("href", "#");
+      $("#divverdadeiro button").attr("id", "verdadeiro");
+      $("#divverdadeiro button").attr("class", "verdadeiro btn btn-primary bg-success");
+      $("#divfalso").html("<button>Falso</button>")
+      $("#divfalso button").attr("href", "#");
+      $("#divfalso button").attr("id", "falso");
+      $("#divfalso button").attr("class", "falso btn btn-primary bg-danger");
+      $("#verdadeiro").val(veracidade[random])
+      $("#falso").val(veracidade[random])
+   
+      $("#verdadeiro").click(function () {
+        paragrafo.splice(random,1)
+        randomCount = randomCount - 1
+        alert(paragrafo)
+        if ($("#verdadeiro").val() == 1) {
+          valor = valor + 1
+          x = x + 1
+          alert("acertou")
+          if(x<=2){
+            game()
+          }else{
+            final()
+          }
+          
+        } else {
+          x = x + 1
+          alert("errou")
+          if(x<=2){
+            game()
+          }else{
+            final()
+          }
+        }
+      })
+
+        
+    $("#falso").click(function () {
+      paragrafo.splice(random,1)
+      randomCount = randomCount - 1
+      alert(paragrafo)
+      if ($("#falso").val() == 0) {
+        valor = valor + 1
+        x = x + 1
+        alert("acertou")
+        if(x<=2){
+          game()
+        }else{
+          final()
+        }
+      } else {
+        x = x + 1
+        alert("errou")
+        if(x<=2){
+          game()
+        }else{
+          final()
+        }
+      }
+    })
+    
+ 
+    }
+
+    var final = function(){
+      $("#pergunta").html("<h1>Nota</h1>")
+      $("#pergunta").append("<p>"+ valor +"</p>")
+      $("#divverdadeiro button").remove()
+      $("#divfalso button").remove()
+
+      $("#divverdadeiro").append("<button>RESET</button>")
+      $("#divverdadeiro button").attr("href", "#");
+      $("#divverdadeiro button").attr("id", "reset");
+      $("#divverdadeiro button").attr("class", "reset btn btn-primary bg-warning");
+
+      $("#reset").click(function(){
+        x = 0
+        valor = 0
+        game()
+      })
+    }
+    game()
+
+   
+  
+    
+
+  });
+
+
+
+</script>
+
+</html>

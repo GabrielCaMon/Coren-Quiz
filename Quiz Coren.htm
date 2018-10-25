@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="node_modules/bootstrap/compiler/bootstrap.css">
+  <link rel="stylesheet" href="css/main.css">
+
+
+
+
+
+  <title>Quiz COREN</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div id="col0" class="col-lg-6 align-self-center">
+
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div id="col1" class="col-lg-6 align-self-center">
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div id="col2" class="col-lg-6 align-self-center">
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/popper.js/dist/popper.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+</body>
+<script>
+
+  $(document).ready(function () {
+
+    var pergunta = []
+    var paragrafo = []
+    var veracidade = []
+    var randomCount = 0;
+    var x = 0
+    var valor = 0
+
+    var start = function () {
+      pergunta = ["<h1>1ª Pergunta</h1>", "<h1>2ª Pergunta</h1>", "<h1>3ª Pergunta</h1>", "<h1>4ª Pergunta</h1>", "<h1>5ª Pergunta</h1>","<h1>6ª Pergunta</h1>","<h1>7ª Pergunta</h1>","<h1>8ª Pergunta</h1>","<h1>9ª Pergunta</h1>","<h1>10ª Pergunta</h1>"]
+      paragrafo = ["<p>1.	HVD é a sigla para hipertrofia ventricular direita</p>", 
+      "<p>2.	DM é a sigla para diabetes mellitus</p>",
+      "<p>3.	P é a sigla para pulso</p>",
+      "<p>4.	FR é a sigla para frequência respiratória </p>",
+      "<p>5.	PCR é a sigla para pulso</p>",
+      "<p>6.	Dispnéia se refere a menstruação difícil e dolorosa</p>",
+      "<p>7.	Dispnéia é a dificuldade de respirar caracterizada por respiração rápida e curta, geralmente associada à doença cardíaca ou pulmonar.</p>",
+      "<p>8.	Mastalgia se refere à dor no seio</p>",
+      "<p>9.	Flebotomia se refere à inflação de uma veia</p>",
+      "<p>10.	As auditorias servem de instrumento de controle de qualidade dos serviços de enfermagem e podem ser feitas de forma retrospectiva, simultâneas e prospectivas</p>",
+      "<p>11.	Ingestão excessiva de álcool é considerada fator de risco para fibrilação arterial</p>",
+      "<p>12.	Toda pessoa tem direito ao sigilo e a confidencialidade de todas as informações pessoais, mesmo após a morte, salvo nos casos de risco a saúde pública</p>",
+      "<p>13.	A vacina BCG oferece alguma proteção contra a hanseníase</p>",
+      "<p>14.	A vacina BCG é aplicada a primeira vez com um ano de vida</p>",
+      "<p>15.	A lei n° 8.080/1990 estabeleceu, em caráter complementar, a participação da iniciativa privada no SUS</p>",
+      "<p>16.	O SUS preconiza a integralidade da assistência</p>",
+      "<p>17.	O SUS foi criado em 1995</p>",
+      "<p>18.	É um direito de todo cidadão ter atendimento humanizado, acolhedor e livre de qualquer discriminação",
+      "<p>19.	EQUIDADE é um dos princípios do SUS</p>",
+      "<p>20.	Lei n° 9.478/ 1986 regulamenta o exercício de enfermagem no Brasil</p>",
+      "<p>21.	A RESOLUÇÃO COFEN N° 564/ 2017 aprova o novo código de ética de enfermagem</p>",
+      "<p>De acordo com o código de ética de enfermagem: Art. 2° Exercer atividades em locais de trabalho livre de riscos e danos e violência física e psicológica à saúde do trabalhador, em respeito à dignidade humana e à proteção dos direitos dos profissionais de enfermagem </p>",
+      "<p>23.	De acordo com o código de ética de enfermagem: Art. 4° Participar da prática multiprofissional, interdisciplinar e transdisciplinar com responsabilidade, autonomia e liberdade, observando os preceitos éticos e legais da profissão</p>",
+      "<p>24.	Por ser bipartido entre a união e os estados, o financiamento do SUS contribui para o fortalecimento da atenção básica em saúde</p>",
+      "<p>25.	 De acordo com a PNAB, aos municípios são disponibilizados instrumentos técnicos e pedagógicos facilitadores do processo de formação e educação permanente dos membros das equipes de gestão e atenção em saúde</p>",
+      "<p>26.	De acordo com a PNAB é denominado unidade básica de saúde todo estabelecimento de saúde que preste ações e serviços de atenção básica no âmbito do SUS</p>",
+      "<p>27.	As doenças crônicas não transmissíveis se tornaram a maior prioridade na área da saúde pública</p>",
+      "<p>28.	ACO é a sigla para anticoncepcional injetável</p>",
+      "<p>29.	DIU é a sigla para diafragma</p>",
+      "<p>30.	Preservativo masculino é um método contraceptivo natural</p>",
+      "<p>31.	Preservativo feminino é um método contraceptivo de barreira</p>",
+      "<p>32.	Amenorréia é considerada um sinal de presunção para gravidez</p>",
+      "<p>33.	Decorridas 20 semanas de gestação, o liquido amniótico consiste em grande parte, em urina fetal</p>",
+      "<p>34.	Microcefalia fetal pode ser resultado de diabetes gestacional não controlada</p>",
+      "<p>35.	Inclui-se na estratégia Rede Cegonha do SUS a atenção a criança de até 24 meses de idade</p>",
+      "<p>36.	A linha Nigra é o nome dado ao processo de hiperpigmentação da linha alba localizada no abdômen da gestante</p>",
+      "<p>37.	Cloasma gravídico ou máscara gravídica são manchas  provocadas pelo aumento da produção de melanina circundando parte da testa, ao redor do nariz, bochecha e lábio superior.</p>",
+      "<p>38.	Paciente do sexo masculino, 58 anos, deu entrada no serviço de saúde com diagnóstico de Trombose Venosa Profunda (TVP). Uma das principais complicações dessa patologia é a embolia pulmonar</p>",
+      "<p>39.	Acidentes humanos provocados por peixes, marinhos ou fluviais, podem ocorrer por ingestão (acidente passivo) ou por ferroadas ou mordeduras (acidente ativo). Sendo assim,  o nome dado aos acidentes provocados por peixes é ictismo. </p>",
+      "<p>40.	Edema de glote é a mais preocupante reação quando a um choque anafilático</p>",
+      "<p>41.	Quando uma infecção, que estava localizada em apenas um local, consegue chegar até o sangue e se espalha por todo o corpo, afetando vários órgãos é dado o nome de choque hipovolêmico </p>",
+      "<p>42.	Quando uma infecção, que estava localizada em apenas um local, consegue chegar até o sangue e se espalha por todo o corpo, afetando vários órgãos é dado o nome de choque séptico </p>",
+      "<p>43.	O choque hipovolêmico surge quando não existe sangue suficiente para levar o oxigênio até aos órgãos mais importantes como o coração e cérebro</p>",
+      "<p>44.	O choque neurogênico aparece quando existe uma perda repentina dos sinais nervosos do sistema nervoso, deixando de enervar os músculos do corpo e os vasos sanguíneos</p>",
+      "<p>45.	A punção de veia jugular compete ao enfermeiro, desde que o profissional seja dotado de habilidade, competência técnica e científica para realizar o procedimento </p>",
+      "<p>46.	EAP (Edema Agudo de Pulmão) é uma forma grave de apresentação das descompensações cardíacas, constituindo uma emergência clínica que se manifesta por um quadro de insuficiência respiratória de rápido início </p>",
+      "<p>47.	Inquietação, ansiedade, obnubilação frequência respiratória, tiragem, dispneia, sibilos, tosse, expectoração de aspecto róseo, cianose e hipoperfusão periférica, são características do edema agudo de pulmão. </p>",
+      "<p>48.	O exame físico, para os principais achados relacionados à presença de derrame pleural, deve ser desenvolvido por meio da palpação, percussão e ausculta </p>",
+      "<p>49.	Sonda Nasogástrica é a via de administração de medicamentos RECOMENDADA em caso de PCR</p>",
+      "<p>50.	A constituição federal brasileira, de 05 de Outubro de 1988, declara que a saúde é um direito de todos e dever dos planos de saúde</p>",
+      "<p>51.	A constituição federal brasileira, de 05 de Outubro de 1988, declara que a saúde é um direito de todos e dever do estado</p>",
+      "<p>A Lei n.º 8.142, de 28 de dezembro de 1990, dispõe sobre a participação da comunidade na gestão do SUS</p>",
+      "<p>53.	“Princípio do Sistema Único de Saúde (SUS), que considera a saúde como um ‘direito de todos e um dever do Estado’ e dá o direito à saúde como um direito fundamental.” Trata-se do Princípio da UNIVERSALIDADE</p>",
+      "<p>54.	“Princípio do Sistema Único de Saúde (SUS), que considera a saúde como um ‘direito de todos e um dever do Estado’ e dá o direito à saúde como um direito fundamental.” Trata-se do Princípio da EQUIDADE</p>",
+      "<p>55.	A alocação de recursos, a orientação programática e o estabelecimento de estratégia de emergências e prioridades em saúde pública podem ser estabelecidos por dados epidemiológicos</p>",
+      "<p>56.	Comissão Intergestores Tripartite (CIT) atua na direção nacional do SUS. A representação de estados e municípios nessa Comissão é regional.</p>",
+      "<p>57.	Universalidade: o SUS deve atender a todos, sem distinções ou restrições, oferecendo toda a atenção necessária, sem qualquer custo. </p>",
+      "<p>58.	Integralidade: o SUS deve oferecer a atenção necessária à saúde da população, promovendo ações contínuas de prevenção e tratamento aos indivíduos e às comunidades, em quaisquer níveis de complexidade. </p>",
+      "<p>59.	Equidade: é um direito e um dever da sociedade participar das gestões públicas em geral e da saúde pública em particular; é dever do Poder Público garantir as condições para essa participação, assegurando a gestão comunitária do SUS. </p>",
+      "<p>60.	O Processo de Enfermagem organiza-se em cinco etapas inter-relacionadas, interdependentes e recorrentes.</p>",
+      "<p>61.	O diagnóstico de enfermagem é definido pela NANDA como julgamento clínico sobre as respostas individuais, familiares ou comunitárias aos atuais ou potenciais problemas de saúde.</p>",
+      "<p>62.	No processo de Sistematização da Assistência de Enfermagem (SAE), a realização das ações levantadas e determinadas pelo enfermeiro está contida na etapa de implementação</p>",
+      "<p>63.	Coleta de dados é o processo deliberado, sistemático e contínuo, que tem, entre outras finalidades, a obtenção de informações e respostas em um dado momento do processo saúde e doença. </p>",
+      "<p>64.	Avaliação de enfermagem é o processo sistemático e contínuo de verificação de mudanças nas respostas da pessoa, família ou coletividade humana</p>",
+      "<p>65.	A finalidade do diagnóstico de enfermagem é Assegurar a continuidade da coleta de dados relacionados aos problemas.</p>",
+      "<p>66.	Problema colaborativo é um tipo de diagnóstico de enfermagem</p>",
+      "<p>67.	É um objetivo da sistematização da assistência de enfermagem é atender o paciente de forma comunitária.</p>",
+      "<p>68.	A finalidade do uso do carvão ativado com prata nos curativos é reduzir o exudato e o odor</p>",
+      "<p>69.	A hanseníase é uma doença infecciosa, crônica, de grande importância para a saúde pública. A transmissão se dá por meio de via parenteral. </p>",
+      "<p>70.	Na aferição de pressão arterial deve-se explicar o procedimento ao paciente, orientando-o para que não fale e descanse por 5-10 minutos em ambiente calmo, com temperatura agradável.</p>",
+      "<p>71.	Um método diagnóstico fundamental, capaz de detectar 70-80% dos casos de tuberculose pulmonar é o hemograma </p>",
+      "<p>72.	A hanseníase se classifica em quatro formas: indeterminada, Virchowiana, tuberculóide, diforma</p>",
+      "<p>73.	Ascite é definida como acúmulo de líquido livre na cavidade peritoneal, manifestação comum na hipertensão portal da cirrose hepática.</p>",
+      "<p>74.	Toxoplasmose é uma doença de notificação compulsória</p>",
+      "<p>Malária é uma doença de notificação compulsória</p>",
+      "<p>76.	Pandemia é a ocorrência em larga distribuição geográfica de casos de natureza semelhante, claramente excessiva em relação ao esperado, atingindo mais de um país ou de um continente simultaneamente. </p>",
+      "<p>77.	Epidemia é a ocorrência em larga distribuição geográfica de casos de natureza semelhante, claramente excessiva em relação ao esperado, atingindo mais de um país ou de um continente simultaneamente. </p>",
+      "<p>78.	Epidemia é a ocorrência em uma comunidade ou região de casos de natureza semelhante, claramente excessiva em relação ao esperado. </p>",
+      "<p>79.	PREVALÊNCIA é o “Índice que mede o número de casos novos de uma doença, episódios ou eventos na população dentro de um período definido de tempo.” </p>",
+      "<p>80.	INCIDÊNCIA é o “Índice que mede o número de casos novos de uma doença, episódios ou eventos na população dentro de um período definido de tempo.” </p>",
+      "<p>81.	PCR é a sigla para parada cardiorrespiratória</p>",
+      "<p>82.	BIC é a sigla para balanço hídrico</p>",
+      "<p>83.	VE é a sigla para ventrículo direito</p>",
+      "<p>84.	A lei n°5.005/1973 dispõe sobre a criação do conselho federal de enfermagem e dos conselhos regionais de enfermagem</p>",
+      "<p>85.	Sonda vesical de demora é usado quando é necessário que o paciente permaneça com ela longos períodos na bexiga, para controlar o volume urinário</p>",
+      "<p>86.	A denominada “tabelinha” é um método contraceptivo de barreira</p>",
+      "<p>87.	 A temperatura basal é um método contraceptivo comportamental</p>",
+      "<p>88.	Diafragma é um método de barreira</p>",
+      "<p>89.	Vasectomia é um método de contracepção cirúrgica</p>",
+      "<p>A vacina pentavalente é aplicada a primeira vez ao nascer</p>",
+      "<p>91.	A primeira dose da VORH deve ser administrada até 3 meses e 15 dias</p>",
+      "<p>92.	A hipertensão arterial sistêmica (HAS) ou pressão alta é uma condição clínica multifatorial caracterizada por níveis elevados e sustentados da pressão arterial (PA). </p>",
+      "<p>93.	Perda significativa de fluido corporal que prejudica as funções normais do corpo é a desidratação</p>",
+      "<p>94.	Anisocoria é a condição caracterizada pelo tamanho desigual das pupilas</p>",
+      "<p>95.	O aumento da freqüência urinaria noturna é nictúria </p>",
+      "<p>96.	O aumento da secreção salivar é denominado amenorréia </p>",
+      "<p>97.	O aumento da secreção salivar é denominado sialorréia </p>",
+      "<p>98.	Necrose refere-se à morte do tecido dentro de uma determinada área</p>",
+      "<p>99.	Oligúria é a produção de urina acima do normal</p>",
+      "<p>100.	Menarca é o nome que se dá ao último ciclo menstrual</p>"];
+      
+      veracidade = [1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,0,
+      1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,
+      1,0,0,1,0,1,0,1,1,0,1,1,0,1,0,1,1,0,0,1,1,0,1,1,1,0,1,1,1,1,1,0,1,
+      1,0,0];//100
+      randomCount = 100;
+      x = 0
+      valor = 0
+      $("#col1 button").remove()
+      $(".container").css({
+        //"background": "url(./imgs/QuizCoren.png)",
+        //"background-size": "1200px 1121px"
+      });
+
+      $("#start").css({
+        "margin-top": "75%",
+        "margn-left":"75%"
+      })
+      $("#col0").html("<img>")
+      $("#col0 img").attr("src", "./imgs/COREN_CE.png");
+      $("#col0").append("<h1>Quiz Coren</h1>")
+      $("#col1").append("<button>START</button>")
+      $("#col1 button").attr("href", "#");
+      $("#col1 button").attr("id", "start");
+      $("#col1 button").attr("class", "info btn btn-primary");
+
+      $("#start").click(function () {
+        x = 0
+        valor = 0
+        game()
+      })
+    }
+
+    var game = function () {
+      var random = Math.floor(Math.random() * randomCount)
+        
+      $("#col0").html("<img>")
+      $("#col0 img").attr("src", "./imgs/COREN_CE.png");
+      $("#col0").append(pergunta[x])
+      $("#col0").append(paragrafo[random])
+      $("#col1").html("<button>Verdadeiro</button>")
+      $("#col1 button").attr("href", "#");
+      $("#col1 button").attr("id", "verdadeiro");
+      $("#col1 button").attr("class", "verdadeiro btn btn-primary bg-success");
+      $("#col2").html("<button>Falso</button>")
+      $("#col2 button").attr("href", "#");
+      $("#col2 button").attr("id", "falso");
+      $("#col2 button").attr("class", "falso btn btn-primary bg-danger");
+      $("#verdadeiro").val(veracidade[random])
+      $("#falso").val(veracidade[random])
+      
+
+      $("#verdadeiro").click(function () {
+        paragrafo.splice(random, 1)
+        randomCount = randomCount - 1
+
+        if ($("#verdadeiro").val() == 1) {
+          valor = valor + 1
+          x = x + 1
+          alert("acertou")
+          veracidade.splice(random, 1)
+          if (x <= 9) {
+            game()
+          } else {
+            final()
+          }
+        } else {
+          x = x + 1
+          alert("errou")
+          veracidade.splice(random, 1)
+          if (x <= 9) {
+            game()
+          } else {
+            final()
+          }
+        }
+      })
+
+
+      $("#falso").click(function () {
+        paragrafo.splice(random, 1)
+        randomCount = randomCount - 1
+
+        if ($("#falso").val() == 0) {
+          valor = valor + 1
+          x = x + 1
+
+          alert("acertou")
+          veracidade.splice(random, 1)
+          if (x <= 9) {
+            game()
+          } else {
+            final()
+          }
+        } else {
+          x = x + 1
+          alert("errou")
+          veracidade.splice(random, 1)
+          if (x <= 9) {
+            game()
+          } else {
+            final()
+          }
+        }
+      })
+    }
+
+    var final = function () {
+      $("#col0").html("<h1>Nota</h1>")
+      $("#col0").append("<p>" + valor + "</p>")
+      $("#col1 button").remove()
+      $("#col2 button").remove()
+      $("#col1").append("<button>RESET</button>")
+      $("#col1 button").attr("href", "#");
+      $("#col1 button").attr("id", "reset");
+      $("#col1 button").attr("class", "reset btn btn-primary bg-warning");
+
+      $("#reset").click(function () {
+        x = 0
+        valor = 0
+        start()
+      })
+    }
+    start()
+
+
+
+
+
+  });
+
+
+
+</script>
+
+</html>

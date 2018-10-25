@@ -1,0 +1,5 @@
+Legenda pergunta 60
+
+botoes 40
+
+pegunta 20
